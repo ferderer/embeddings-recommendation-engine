@@ -55,7 +55,7 @@ jobs:
           VPS_USERNAME: ${{ secrets.VPS_USERNAME }}
         run: |
           # Copy docker-compose.yml to VPS
-          scp -o StrictHostKeyChecking=no docker-compose.yml $VPS_USERNAME@$VPS_HOST:~/docker-compose.yml
+          scp -o StrictHostKeyChecking=no docker-compose.yml nginx.conf $VPS_USERNAME@$VPS_HOST:~/docker-compose.yml
 
           # SSH to VPS and deploy
           ssh -o StrictHostKeyChecking=no $VPS_USERNAME@$VPS_HOST << 'EOF'

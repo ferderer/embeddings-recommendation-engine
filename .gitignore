@@ -1,0 +1,52 @@
+# Build tool outputs (Maven)
+target/
+*.jar
+*.war
+*.ear
+
+# Build tool outputs (Gradle)
+build/
+.gradle/
+out/
+
+# Dependency directories
+.m2/
+.gradle/
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Environment-specific or sensitive files
+.env
+*.key
+*.pem
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Compiled source
+*.class
+*.com
+*.exe
+
+# Miscellaneous
+*.cache
+*.pid

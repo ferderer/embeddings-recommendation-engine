@@ -11,6 +11,8 @@ services:
       mariadb:
         condition: service_healthy
     restart: always
+    networks:
+      - app-network
   mariadb:
     image: mariadb:11.7
     environment:
@@ -28,5 +30,47 @@ services:
       timeout: 5s
       retries: 5
     restart: always
+    networks:
+      - app-network
+  nginx:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DEFAULT_HOST=${DOMAIN_NAME}
+      - VIRTUAL_HOST=ere.ferderer.de
+      - VIRTUAL_PORT=8080
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - nginx_certs:/etc/nginx/certs
+      - nginx_vhost:/etc/nginx/vhost.d
+      - nginx_html:/usr/share/nginx/html
+    depends_on:
+      - app
+    restart: always
+    networks:
+      - app-network
+  letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    environment:
+      - NGINX_PROXY_CONTAINER=nginx
+      - VIRTUAL_HOST=ere.ferderer.de
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - nginx_certs:/etc/nginx/certs
+      - nginx_vhost:/etc/nginx/vhost.d
+      - nginx_html:/usr/share/nginx/html
+    depends_on:
+      - nginx
+    restart: always
+    networks:
+      - app-network
 volumes:
   mariadb_data:
+  nginx_certs:
+  nginx_vhost:
+  nginx_html:
+networks:
+  app-network:
+    driver: bridge

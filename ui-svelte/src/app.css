@@ -21,6 +21,7 @@ body {
   font-weight: 400;
   line-height: 1.4;
   min-height: 100vh;
+  margin: 0;
   padding: 0;
   text-rendering: optimizeLegibility;
 
@@ -148,4 +149,50 @@ tfoot td > div {
       color: white;
     }
   }
+}
+.container {
+  display: flex;
+  gap: 1rem;
+  min-height: 100vh;
+}
+
+#app {
+  flex: 1;
+  min-height: 100vh;
+}
+
+aside {
+  flex: 0 0 22rem;
+  max-width: 22rem;
+  height: 100vh;
+  background-color: #f9f9f9;
+  border-right: 1px solid #ddd;
+  box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+  transition: max-width 0.5s ease, padding 0.5s ease;
+  padding: 3.5rem 1rem 0;
+  margin: 0;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+}
+
+#sideinfo-toggler:checked ~ .container aside {
+  max-width: 0;
+  padding: 0;
+  flex: 0 0 0;
+  overflow: hidden; /* Hide content completely */
+}
+
+label[for="sideinfo-toggler"] {
+  position: absolute;
+  top: .2rem;
+  left: 1rem;
+  font-size: 2rem;
+  color: blue;
+  cursor: pointer;
+  z-index: 10;
+}
+
+#sideinfo-toggler {
+  display: none;
 }

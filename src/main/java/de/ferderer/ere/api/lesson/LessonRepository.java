@@ -44,7 +44,7 @@ public interface LessonRepository extends JpaRepository<LessonEntity, Long> {
             JOIN lesson il ON il.id = i.lesson_id
             LEFT JOIN lesson_similarities s ON (s.lesson_id1 = i.lesson_id AND s.lesson_id2 = l.id)
                 OR (s.lesson_id2 = i.lesson_id AND s.lesson_id1 = l.id)
-            WHERE l.id NOT IN (SELECT lesson_id FROM input_lessons)
+            WHERE l.id NOT IN (:ids)
             GROUP BY l.id, l.title, l.lang, l.cefr
             ORDER BY weighted_similarity_score DESC
             LIMIT 5

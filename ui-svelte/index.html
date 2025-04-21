@@ -1,13 +1,24 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Svelte</title>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Embeddings Recommendation Engine Demo</title>
+  <script type="module" src="/src/main.js" defer></script>
+</head>
+<body>
+  <input type="checkbox" id="sideinfo-toggler">
+  <label for="sideinfo-toggler">ⓘ</label>
+  <div class="container">
+    <aside>
+      <h2>Guide: How to Use the Lesson Recommender Demo</h2>
+      <p>This demo showcases a recommendation engine for language learners, built on precalculated embeddings and cosine similarities, with weighted attributes (60% semantic title similarity, 30% language, 10% CEFR). Recommendations are generated based on the semantic similarities between lesson titles, using your three most recent bookings. Real-world engines are far more complex, incorporating advanced methods and models – for a tailored solution, <a href="mailto:akquise@ferderer.de">hire me ✉</a> as a professional!</p>
+      <p><b> • Explore Lessons:</b> View all lessons in the table, showing each lesson’s title, language, and CEFR level (A1 to C2).</p>
+      <p><b> • Book a Lesson:</b> Click the "Book" button to add a lesson to your bookings (up to three). You’ll see a checkmark and "Booked" once booked.</p>
+      <p><b> • View Booked Lessons:</b> See your booked lessons below, listed with the booking time (latest on top). To start over, reload the page.</p>
+      <p><b> • Get Recommendations:</b> After booking, view AI-driven recommendations based on your recent bookings.</p>
+    </aside>
     <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  </div>
+</body>
 </html>

@@ -3,7 +3,7 @@
     xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
 >
-    <name>embeddings-recommendation-engine</name>
+    <name>embeddings-recommendation-engine-demo</name>
     <groupId>de.ferderer.ere</groupId>
     <artifactId>embeddings-recommendation-engine</artifactId>
     <version>1.0.0</version>
@@ -276,29 +276,6 @@
                     <plugin>
                         <groupId>org.jacoco</groupId>
                         <artifactId>jacoco-maven-plugin</artifactId>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.flywaydb</groupId>
-                        <artifactId>flyway-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>local</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>clean</goal>
-                                    <goal>migrate</goal>
-                                </goals>
-                                <configuration>
-                                    <url>${env.ERE_TEST_URL}</url>
-                                    <user>${env.ERE_TEST_USER}</user>
-                                    <password>${env.ERE_TEST_PASS}</password>
-                                    <locations>
-                                        <location>filesystem:src/main/flyway</location>
-                                    </locations>
-                                </configuration>
-                            </execution>
-                        </executions>
                     </plugin>
                 </plugins>
             </build>

@@ -25,6 +25,13 @@
       .sort((a, b) => b.booked - a.booked);
   }
 
+  function bookLessonId(id) {
+    let lesson = available.find(item => item.id === id);
+    if (lesson) {
+        bookLesson(lesson);
+    }
+  }
+
   function formatTime(timestamp) {
     return timestamp.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit',
       minute: '2-digit', second: '2-digit' });
@@ -74,7 +81,7 @@
           <td>{lesson.lang}</td>
           <td>
             {#if !lesson.booked}
-              <button onclick={() => bookLesson(lesson)}>Book</button>
+              <button onclick={() => bookLessonId(lesson.id)}>Book</button>
             {:else}
               <span class="success">✓ Booked</span>
             {/if}

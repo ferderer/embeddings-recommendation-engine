@@ -1,0 +1,30 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ERE_DB_URL=jdbc:mariadb://mariadb:3306/ere
+      - ERE_DB_USER=ere
+      - ERE_DB_PASS=${APP_DB_PASSWORD}
+    depends_on:
+      - mariadb
+    restart: always
+
+  mariadb:
+    image: mariadb:11.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=ere
+      - MYSQL_USER=ere
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    ports:
+      - "3309:3306"
+    restart: always
+
+volumes:
+  mariadb_data:

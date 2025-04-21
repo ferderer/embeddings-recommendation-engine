@@ -1,5 +1,6 @@
 services:
   app:
+    image: ${APP_IMAGE:-local/app}  # Use APP_IMAGE if set (VPS), else local/app (local build)
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,9 +11,9 @@ services:
       - ERE_DB_USER=ere
       - ERE_DB_PASS=${APP_DB_PASSWORD}
     depends_on:
-      - mariadb
+      mariadb:
+        condition: service_healthy
     restart: always
-
   mariadb:
     image: mariadb:11.7
     environment:
@@ -24,7 +25,11 @@ services:
       - mariadb_data:/var/lib/mysql
     ports:
       - "3309:3306"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     restart: always
-
 volumes:
   mariadb_data:

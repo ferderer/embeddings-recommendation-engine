@@ -60,5 +60,5 @@ jobs:
           # SSH to VPS and deploy
           ssh -o StrictHostKeyChecking=no $VPS_USERNAME@$VPS_HOST << 'EOF'
             # Deploy with Docker Compose
-            docker compose -f ~/docker-compose.yml --env-file ~/ere.env up -d
+            docker compose -f ~/docker-compose.yml up -d
           EOF

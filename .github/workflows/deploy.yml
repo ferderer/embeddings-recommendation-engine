@@ -53,21 +53,12 @@ jobs:
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USERNAME: ${{ secrets.VPS_USERNAME }}
-          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-          APP_DB_PASSWORD: ${{ secrets.APP_DB_PASSWORD }}
         run: |
           # Copy docker-compose.yml to VPS
           scp -o StrictHostKeyChecking=no docker-compose.yml $VPS_USERNAME@$VPS_HOST:~/docker-compose.yml
 
           # SSH to VPS and deploy
           ssh -o StrictHostKeyChecking=no $VPS_USERNAME@$VPS_HOST << 'EOF'
-            # Create .env file
-            echo "MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD" > ~/ere.env
-            echo "MYSQL_PASSWORD=$MYSQL_PASSWORD" >> ~/ere.env
-            echo "APP_DB_PASSWORD=$APP_DB_PASSWORD" >> ~/ere.env
-            echo "APP_IMAGE=ghcr.io/${{ github.repository }}/app:latest" >> ~/ere.env
-
             # Deploy with Docker Compose
             docker compose -f ~/docker-compose.yml --env-file ~/ere.env up -d
           EOF

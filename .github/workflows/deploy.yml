@@ -48,26 +48,18 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
-      # Deploy to VPS
       - name: Deploy to VPS
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USERNAME: ${{ secrets.VPS_USERNAME }}
         run: |
-          # Copy docker-compose.yml and nginx.conf
-          scp -o StrictHostKeyChecking=no docker-compose.yml nginx.conf $VPS_USERNAME@$VPS_HOST:~/
+          ssh -o StrictHostKeyChecking=no $VPS_USERNAME@$VPS_HOST << EOF
+            export APP_IMAGE=ghcr.io/${{ github.repository }}/app:latest
+            echo "APP_IMAGE: \$APP_IMAGE"
 
-          # SSH to VPS and deploy
-          ssh -o StrictHostKeyChecking=no $VPS_USERNAME@$VPS_HOST << 'EOF'
-            # Source environment variables
-            source ~/.bash_profile
+            # Login to GHCR on VPS
+            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-            # Debug environment variables
-            echo "APP_IMAGE: $APP_IMAGE"
-
-            # Pull latest app image
             docker compose -f ~/docker-compose.yml pull app
-
-            # Deploy with forced recreate
             docker compose -f ~/docker-compose.yml up -d --force-recreate app
           EOF

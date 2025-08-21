@@ -54,11 +54,20 @@ jobs:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USERNAME: ${{ secrets.VPS_USERNAME }}
         run: |
-          # Copy docker-compose.yml and nginx.conf to VPS
+          # Copy docker-compose.yml and nginx.conf
           scp -o StrictHostKeyChecking=no docker-compose.yml nginx.conf $VPS_USERNAME@$VPS_HOST:~/
 
           # SSH to VPS and deploy
           ssh -o StrictHostKeyChecking=no $VPS_USERNAME@$VPS_HOST << 'EOF'
-            # Deploy with Docker Compose
-            docker compose -f ~/docker-compose.yml up -d
+            # Source environment variables
+            source ~/.bash_profile
+
+            # Debug environment variables
+            echo "APP_IMAGE: $APP_IMAGE"
+
+            # Pull latest app image
+            docker compose -f ~/docker-compose.yml pull app
+
+            # Deploy with forced recreate
+            docker compose -f ~/docker-compose.yml up -d --force-recreate app
           EOF

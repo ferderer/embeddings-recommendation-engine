@@ -1,0 +1,9 @@
+I’ve built a simplified lesson recommender demo to explore AI-driven personalization – now live on my VPS with a Svelte UI! This demo lets language learners browse lessons (title, language, CEFR) and book lessons to get recommendations based on semantic title similarities. It uses 𝐓𝐞𝐧𝐬𝐨𝐫𝐅𝐥𝐨𝐰 for precalculated embeddings, cosine similarities, and weighted attributes (60% text, 30% language, 10% CEFR), built with 𝐉𝐚𝐯𝐚/𝐒𝐐𝐋, 𝐌𝐚𝐯𝐞𝐧, and deployed via 𝐆𝐢𝐭𝐇𝐮𝐛 𝐀𝐜𝐭𝐢𝐨𝐧𝐬.
+
+This is a basic prototype – real recommenders are far more complex, with diverse methods (collaborative filtering, content-based), models (deep learning, matrix factorization), and custom scoring. For a robust solution, hiring a professional is essential! Check it out ℎ𝑡𝑡𝑝𝑠://𝑒𝑟𝑒.𝑓𝑒𝑟𝑑𝑒𝑟𝑒𝑟.𝑑𝑒/ or on GitHub ℎ𝑡𝑡𝑝𝑠://𝑔𝑖𝑡ℎ𝑢𝑏.𝑐𝑜𝑚/𝑓𝑒𝑟𝑑𝑒𝑟𝑒𝑟/𝑒𝑚𝑏𝑒𝑑𝑑𝑖𝑛𝑔𝑠-𝑟𝑒𝑐𝑜𝑚𝑚𝑒𝑛𝑑𝑎𝑡𝑖𝑜𝑛-𝑒𝑛𝑔𝑖𝑛𝑒! Ready to enhance your platform? 𝐇𝐢𝐫𝐞 𝐦𝐞 𝐚𝐬 𝐚 𝐟𝐫𝐞𝐞𝐥𝐚𝐧𝐜𝐞𝐫 – DM me!
+
+🇩🇪 𝐙𝐮𝐬𝐚𝐦𝐦𝐞𝐧𝐟𝐚𝐬𝐬𝐮𝐧𝐠: Meine KI-Empfehlungs-Demo für Sprachlern-Apps ist live! Mit Svelte UI, TensorFlow, Java/SQL und Maven zeigt sie Empfehlungen basierend auf Titelähnlichkeiten. Für komplexe Lösungen ist ein Profi nötig! Code auf GitHub ℎ𝑡𝑡𝑝𝑠://𝑔𝑖𝑡ℎ𝑢𝑏.𝑐𝑜𝑚/𝑓𝑒𝑟𝑑𝑒𝑟𝑒𝑟/𝑒𝑚𝑏𝑒𝑑𝑑𝑖𝑛𝑔𝑠-𝑟𝑒𝑐𝑜𝑚𝑚𝑒𝑛𝑑𝑎𝑡𝑖𝑜𝑛-𝑒𝑛𝑔𝑖𝑛𝑒. 𝐇𝐞𝐮𝐫𝐞 𝐦𝐢𝐜𝐡 𝐚𝐥𝐬 𝐅𝐫𝐞𝐢𝐛𝐞𝐫𝐮𝐟𝐥𝐞𝐫 𝐚𝐧!
+
+What’s your favorite EdTech feature? #KI #EmpfehlungsEngine #TensorFlow #Svelte #Maven #EdTech #Freelance
+
+
